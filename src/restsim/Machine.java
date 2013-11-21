@@ -1,34 +1,41 @@
 package restsim;
 
-public class Machine {
+public enum Machine {
+	BURGERMC(5 * 60), FRIESMC(3 * 60), COKEMC(1 * 60);
 
-	Food foodType;
-	int cookTime;
-	boolean busy;
+	private int cookTime;
+	private boolean busy;
 
-	public Machine(Food type) {
-		foodType = type;
-		switch (foodType) {
-		case BURGER:
-			cookTime = 5 * 60;
-			break;
-		case FRIES:
-			cookTime = 3 * 60;
-			break;
-		case COKE:
-			cookTime = 1 * 60;
-			break;
-		}
-	}
-
-	public synchronized void prepareFood() {
-		busy = true;
-		// wait
+	Machine(int time) {
+		cookTime = time;
 		busy = false;
 	}
 
-	public synchronized boolean isBusy() {
-		return busy;
+	public static Machine get(Food type) {
+		switch (type) {
+		case BURGER:
+			return BURGERMC;
+		case FRIES:
+			return FRIESMC;
+		case COKE:
+			return COKEMC;
+		default:
+			System.out.println("Invalid food type");
+			return null;
+		}
 	}
 
+	public synchronized void cookFood() {
+		try {
+			while (busy) {
+				wait();
+			}
+			busy = true;
+			Thread.sleep(cookTime);
+			busy = false;
+			notify();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }

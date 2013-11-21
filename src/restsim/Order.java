@@ -2,19 +2,39 @@ package restsim;
 
 public class Order {
 
-	int items[] = new int[3];
+	private int items[] = new int[3];
+	private Diner diner;
 
-	public Order(int burgers, int fries, int coke) {
+	public Order(Diner diner, int burgers, int fries, int coke) {
 		if (isOrderValid(burgers, fries, coke)) {
-			items[0] = burgers;
-			items[1] = fries;
-			items[2] = coke;
-		} else {
 			System.out.println("Invalid order!");
+			System.exit(-1);
+		}
+		this.diner = diner;
+		items[0] = burgers;
+		items[1] = fries;
+		items[2] = coke;
+	}
+
+	public int getNum(Food type) {
+		switch (type) {
+		case BURGER:
+			return items[0];
+		case FRIES:
+			return items[1];
+		case COKE:
+			return items[2];
+		default:
+			System.out.println("Invalid food type");
+			return -1;
 		}
 	}
 
-	boolean isOrderValid(int burgers, int fries, int coke) {
+	public Diner getDiner() {
+		return diner;
+	}
+
+	private boolean isOrderValid(int burgers, int fries, int coke) {
 		if (burgers < 1)
 			return false;
 		if (fries < 0)
