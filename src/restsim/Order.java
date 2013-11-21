@@ -3,14 +3,12 @@ package restsim;
 public class Order {
 
 	private int items[] = new int[3];
-	private Diner diner;
 
-	public Order(Diner diner, int burgers, int fries, int coke) {
-		if (isOrderValid(burgers, fries, coke)) {
+	public Order(int burgers, int fries, int coke) {
+		if (!isOrderValid(burgers, fries, coke)) {
 			System.out.println("Invalid order!");
 			System.exit(-1);
 		}
-		this.diner = diner;
 		items[0] = burgers;
 		items[1] = fries;
 		items[2] = coke;
@@ -28,10 +26,6 @@ public class Order {
 			System.out.println("Invalid food type");
 			return -1;
 		}
-	}
-
-	public Diner getDiner() {
-		return diner;
 	}
 
 	private boolean isOrderValid(int burgers, int fries, int coke) {

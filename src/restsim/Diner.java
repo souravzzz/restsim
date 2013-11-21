@@ -6,12 +6,14 @@ enum Status {
 
 public class Diner implements Runnable {
 
-	Status status;
 	int id;
+	Status status;
+	Order order;
 
-	public Diner(int id) {
+	public Diner(int id, Order order) {
 		this.id = id;
-		status = Status.WAITING;
+		this.status = Status.WAITING;
+		this.order = order;
 	}
 
 	public Order getOrder() {
@@ -19,7 +21,7 @@ public class Diner implements Runnable {
 			System.out.println("Invalid state of diner");
 			System.exit(-1);
 		}
-		return new Order(this, 3, 2, 1);
+		return order;
 	}
 
 	@Override

@@ -8,11 +8,15 @@ public class Cook implements Runnable {
 		this.id = id;
 	}
 
-	public void processOrder(Order order) {
+	public void handleDiner(Diner diner) {
+		prepareOrder(diner.order);
+		serveFood(diner);
+	}
+
+	public void prepareOrder(Order order) {
 		prepareFood(Food.BURGER, order.getNum(Food.BURGER));
 		prepareFood(Food.FRIES, order.getNum(Food.FRIES));
 		prepareFood(Food.COKE, order.getNum(Food.COKE));
-		serveFood(order.getDiner());
 	}
 
 	private void prepareFood(Food type, int num) {

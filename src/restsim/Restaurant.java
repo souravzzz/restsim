@@ -15,7 +15,8 @@ public class Restaurant {
 			tables[i] = new Table(i);
 		}
 		for (int i = 0; i < diners.length; i++) {
-			diners[i] = new Diner(i);
+			Order order = new Order((i % 2) + 1, i % 3, i % 2);
+			diners[i] = new Diner(i, order);
 			new Thread(diners[i]).start();
 		}
 
