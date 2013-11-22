@@ -33,8 +33,8 @@ public class Restaurant {
 
 		sc.close();
 
-		Clock.init();
 		cooks.start();
+		Clock.init();
 		diners.start();
 	}
 
