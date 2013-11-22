@@ -6,6 +6,9 @@ public class Tables {
 	private Table[] tables;
 
 	public Tables(int num) {
+		if (num < 1) {
+			System.out.println("Invalid no. of tables!");
+		}
 		tables = new Table[num];
 		for (int i = 0; i < num; i++) {
 			tables[i] = new Table(i);

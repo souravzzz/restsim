@@ -25,6 +25,7 @@ public enum Machine {
 		}
 	}
 
+	// COOK GIVEN AMOUNT OF FOOD
 	public synchronized void cookFood(int cookId, int num) {
 		try {
 			while (busy) {

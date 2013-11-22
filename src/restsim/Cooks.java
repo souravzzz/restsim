@@ -2,11 +2,12 @@ package restsim;
 
 public class Cooks {
 
-	private int free;
 	private Cook[] cooks;
 
 	public Cooks(int num) {
-		free = num;
+		if (num < 1) {
+			System.out.println("Invalid no. of cooks!");
+		}
 		cooks = new Cook[num];
 		for (int i = 0; i < num; i++) {
 			cooks[i] = new Cook(i);
@@ -17,30 +18,6 @@ public class Cooks {
 		for (int i = 0; i < cooks.length; i++) {
 			new Thread(cooks[i]).start();
 		}
-	}
-
-	public synchronized Cook getCook() {
-		try {
-			while (free == 0) {
-				wait();
-			}
-			for (int i = 0; i < cooks.length; i++) {
-				Cook cook = cooks[i];
-				if (!cook.busy) {
-					free--;
-					cook.busy = true;
-					return cook;
-				}
-			}
-		} catch (InterruptedException e) {
-		}
-		return null;
-	}
-
-	public synchronized void freeCook(Cook cook) {
-		free++;
-		cook.busy = false;
-		notify();
 	}
 
 }
