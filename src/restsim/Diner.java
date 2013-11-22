@@ -4,9 +4,9 @@ public class Diner implements Runnable {
 
 	int id;
 	Order order;
-	Tables tables;
-	Cooks cooks;
-	Diners diners;
+	private Tables tables;
+	private Cooks cooks;
+	private Diners diners;
 
 	public Diner(int id, Order order, Tables tables, Cooks cooks, Diners diners) {
 		this.id = id;

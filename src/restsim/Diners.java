@@ -2,8 +2,8 @@ package restsim;
 
 public class Diners {
 
-	int finished;
-	Diner[] diners;
+	private int finished;
+	private Diner[] diners;
 
 	public Diners(int num, Tables tables, Cooks cooks) {
 		finished = 0;

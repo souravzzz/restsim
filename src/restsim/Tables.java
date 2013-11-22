@@ -2,8 +2,8 @@ package restsim;
 
 public class Tables {
 
-	int free;
-	Table[] tables;
+	private int free;
+	private Table[] tables;
 
 	public Tables(int num) {
 		tables = new Table[num];

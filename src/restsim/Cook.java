@@ -4,7 +4,7 @@ public class Cook implements Runnable {
 
 	int id;
 	boolean busy;
-	Cooks cooks;
+	private Cooks cooks;
 
 	public Cook(int id, Cooks cooks) {
 		this.id = id;

@@ -2,8 +2,8 @@ package restsim;
 
 public class Cooks {
 
-	int free;
-	Cook[] cooks;
+	private int free;
+	private Cook[] cooks;
 
 	public Cooks(int num) {
 		free = num;

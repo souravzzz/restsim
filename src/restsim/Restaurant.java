@@ -2,10 +2,6 @@ package restsim;
 
 public class Restaurant {
 
-	Tables tables;
-	Diners diners;
-	Cooks cooks;
-
 	public static void main(String[] args) {
 		Tables tables = new Tables(5);
 		Cooks cooks = new Cooks(3);
