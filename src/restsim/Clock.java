@@ -2,18 +2,14 @@ package restsim;
 
 public class Clock {
 
-	static long start;
+	private static long start;
 
 	public static void init() {
 		start = System.currentTimeMillis();
 	}
 
-	public static long getRawTime() {
+	public static long getTime() {
 		return System.currentTimeMillis() - start;
 	}
 
-	public static String getTime() {
-		long mm = getRawTime();
-		return String.format("%02d", mm);
-	}
 }

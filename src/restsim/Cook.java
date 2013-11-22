@@ -24,9 +24,7 @@ public class Cook implements Runnable {
 
 	private void prepareFood(Food type, int num) {
 		Machine machine = Machine.get(type);
-		for (int i = 0; i < num; i++) {
-			machine.cookFood(id);
-		}
+		machine.cookFood(id, num);
 	}
 
 	private void serveOrder(Order order) {

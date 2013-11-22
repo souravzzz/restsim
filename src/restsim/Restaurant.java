@@ -18,7 +18,7 @@ public class Restaurant {
 		tables = new Tables(nTables);
 		cooks = new Cooks(nCooks);
 		diners = new Diners(nDiners);
-		
+
 		Diner.restaurant = this;
 		Cook.restaurant = this;
 

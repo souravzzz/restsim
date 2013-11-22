@@ -27,8 +27,8 @@ public class Diners {
 	public synchronized void leave(Diner diner) {
 		finished++;
 		if (finished == diners.length) {
-			System.out.println("Last Diner " + diner.id
-					+ " left restaurant  at " + Clock.getTime());
+			System.out.format("Last Diner %2d leaves restaurant at %d",
+					diner.id, Clock.getTime());
 			System.exit(0);
 		}
 	}

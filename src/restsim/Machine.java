@@ -25,15 +25,15 @@ public enum Machine {
 		}
 	}
 
-	public synchronized void cookFood(int cookId) {
+	public synchronized void cookFood(int cookId, int num) {
 		try {
 			while (busy) {
 				wait();
 			}
-			System.out.println("Cook " + cookId + " started " + this + " at "
-					+ Clock.getTime());
+			System.out.format("Cook %2d started  %s at %d%n", cookId, this,
+					Clock.getTime());
 			busy = true;
-			Thread.sleep(cookTime);
+			Thread.sleep(cookTime * num);
 			busy = false;
 			notify();
 		} catch (InterruptedException e) {
