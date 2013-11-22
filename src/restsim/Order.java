@@ -2,6 +2,7 @@ package restsim;
 
 public class Order {
 
+	boolean ready;
 	private int items[] = new int[3];
 
 	public Order(int burgers, int fries, int coke) {
@@ -12,6 +13,7 @@ public class Order {
 		items[0] = burgers;
 		items[1] = fries;
 		items[2] = coke;
+		ready = false;
 	}
 
 	public int getNum(Food type) {

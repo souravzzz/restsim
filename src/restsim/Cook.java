@@ -5,21 +5,16 @@ public class Cook implements Runnable {
 	int id;
 	boolean busy;
 	Cooks cooks;
-	Diners diners;
 
-	public Cook(int id, Cooks cooks, Diners diners) {
+	public Cook(int id, Cooks cooks) {
 		this.id = id;
 		this.cooks = cooks;
-		this.diners = diners;
 	}
 
-	public synchronized void handleDiner(Diner diner) {
-		busy = true;
-		System.out.println("Cook " + id + " took order from Diner " + diner.id
-				+ " at ");
-		prepareOrder(diner.order);
-		serveFood(diner);
-		busy = false;
+	public synchronized void placeOrder(Order order) {
+		prepareOrder(order);
+		serveOrder(order);
+		cooks.freeCook(this);
 	}
 
 	private void prepareOrder(Order order) {
@@ -35,15 +30,17 @@ public class Cook implements Runnable {
 		}
 	}
 
-	private void serveFood(Diner diner) {
-		diners.serveDiner(diner);
+	private void serveOrder(Order order) {
+		synchronized (order) {
+			order.ready = true;
+			order.notify();
+		}
 	}
 
 	@Override
 	public void run() {
-		while (diners.hasMore()) {
-			Diner diner = diners.getDiner();
-			handleDiner(diner);
+		while (true) {
+			Thread.yield();
 		}
 	}
 

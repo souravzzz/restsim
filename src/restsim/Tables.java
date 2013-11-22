@@ -33,12 +33,8 @@ public class Tables {
 	}
 
 	public synchronized void freeTable(Table table) {
-		for (int i = 0; i < tables.length; i++) {
-			if (tables[i].equals(table)) {
-				free++;
-				tables[i].busy = false;
-				notify();
-			}
-		}
+		free++;
+		table.busy = false;
+		notify();
 	}
 }

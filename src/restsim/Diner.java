@@ -1,39 +1,53 @@
 package restsim;
 
-enum Status {
-	WAITING, SEATED, ORDERED, EATING, FINISHED
-};
-
 public class Diner implements Runnable {
 
 	int id;
-	Status status;
 	Order order;
 	Tables tables;
+	Cooks cooks;
 	Diners diners;
 
-	public Diner(int id, Order order, Tables tables, Diners diners) {
+	public Diner(int id, Order order, Tables tables, Cooks cooks, Diners diners) {
 		this.id = id;
-		this.status = Status.WAITING;
 		this.order = order;
 		this.tables = tables;
+		this.cooks = cooks;
 		this.diners = diners;
 	}
 
 	@Override
 	public void run() {
 		try {
+			// FIND TABLE
 			Table table = tables.getTable();
-			diners.sitDiner(this);
 			System.out.println("Diner " + id + " was seated at table "
 					+ table.id + " at ");
-			while (!status.equals(Status.EATING)) {
-				Thread.yield();
+
+			// FIND COOK
+			Cook cook = cooks.getCook();
+			cook.placeOrder(order);
+			System.out.println("Cook " + cook.id + " took order from diner "
+					+ id + " at ");
+
+			// WAIT FOR FOOD
+			synchronized (order) {
+				while (!order.ready) {
+					order.wait();
+				}
 			}
-			System.out.println("Diner " + id + " was served at ");
+
+			// GOT FOOD
+			System.out.println("Cook " + cook.id + " served food to Diner "
+					+ id + " at ");
+			cooks.freeCook(cook);
+
+			// START EATING
 			Thread.sleep(30);
+
+			// LEAVE
 			tables.freeTable(table);
-			diners.finishDiner(this);
+			diners.leave(this);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
