@@ -42,13 +42,12 @@ public class Diner implements Runnable {
 			restaurant.cooks.freeCook(cook);
 
 			// START EATING
-			Thread.sleep(30 * 60);
+			Thread.sleep(30);
 
 			// LEAVE
 			restaurant.tables.freeTable(table);
 			restaurant.diners.leave(this);
 		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
 	}
 

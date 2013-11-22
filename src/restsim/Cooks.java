@@ -33,7 +33,6 @@ public class Cooks {
 				}
 			}
 		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
 		return null;
 	}
