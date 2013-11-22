@@ -9,7 +9,7 @@ public class Cooks {
 		free = num;
 		cooks = new Cook[num];
 		for (int i = 0; i < num; i++) {
-			cooks[i] = new Cook(i, this);
+			cooks[i] = new Cook(i);
 		}
 	}
 

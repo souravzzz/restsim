@@ -5,18 +5,12 @@ public class Diner implements Runnable {
 	int id;
 	Order order;
 	int atime;
-	private Tables tables;
-	private Cooks cooks;
-	private Diners diners;
+	static Restaurant restaurant;
 
-	public Diner(int id, int atime, Order order, Tables tables, Cooks cooks,
-			Diners diners) {
+	public Diner(int id, int atime, Order order) {
 		this.id = id;
 		this.atime = atime;
 		this.order = order;
-		this.tables = tables;
-		this.cooks = cooks;
-		this.diners = diners;
 	}
 
 	@Override
@@ -25,12 +19,12 @@ public class Diner implements Runnable {
 			Thread.sleep(atime);
 
 			// FIND TABLE
-			Table table = tables.getTable();
+			Table table = restaurant.tables.getTable();
 			System.out.println("Diner " + id + " was seated at table "
 					+ table.id + " at " + Clock.getTime());
 
 			// FIND COOK
-			Cook cook = cooks.getCook();
+			Cook cook = restaurant.cooks.getCook();
 			System.out.println("Cook " + cook.id + " got order from diner "
 					+ id + " at " + Clock.getTime());
 			cook.placeOrder(order);
@@ -45,14 +39,14 @@ public class Diner implements Runnable {
 			// GOT FOOD
 			System.out.println("Cook " + cook.id + " served food to Diner "
 					+ id + " at " + Clock.getTime());
-			cooks.freeCook(cook);
+			restaurant.cooks.freeCook(cook);
 
 			// START EATING
 			Thread.sleep(30 * 60);
 
 			// LEAVE
-			tables.freeTable(table);
-			diners.leave(this);
+			restaurant.tables.freeTable(table);
+			restaurant.diners.leave(this);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

@@ -4,17 +4,16 @@ public class Cook implements Runnable {
 
 	int id;
 	boolean busy;
-	private Cooks cooks;
+	static Restaurant restaurant;
 
-	public Cook(int id, Cooks cooks) {
+	public Cook(int id) {
 		this.id = id;
-		this.cooks = cooks;
 	}
 
 	public synchronized void placeOrder(Order order) {
 		prepareOrder(order);
 		serveOrder(order);
-		cooks.freeCook(this);
+		restaurant.cooks.freeCook(this);
 	}
 
 	private void prepareOrder(Order order) {

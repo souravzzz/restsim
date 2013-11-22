@@ -4,16 +4,23 @@ import java.util.Scanner;
 
 public class Restaurant {
 
-	public static void main(String[] args) {
+	Tables tables;
+	Cooks cooks;
+	Diners diners;
+
+	public void simulate() {
 
 		Scanner sc = new Scanner(System.in);
 		int nDiners = sc.nextInt();
 		int nTables = sc.nextInt();
 		int nCooks = sc.nextInt();
 
-		Tables tables = new Tables(nTables);
-		Cooks cooks = new Cooks(nCooks);
-		Diners diners = new Diners(nDiners, tables, cooks);
+		tables = new Tables(nTables);
+		cooks = new Cooks(nCooks);
+		diners = new Diners(nDiners);
+		
+		Diner.restaurant = this;
+		Cook.restaurant = this;
 
 		for (int i = 0; i < nDiners; i++) {
 			int atime = sc.nextInt();

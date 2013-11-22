@@ -4,18 +4,14 @@ public class Diners {
 
 	private int finished;
 	private Diner[] diners;
-	private Tables tables;
-	private Cooks cooks;
 
-	public Diners(int num, Tables tables, Cooks cooks) {
+	public Diners(int num) {
 		finished = 0;
 		diners = new Diner[num];
-		this.tables = tables;
-		this.cooks = cooks;
 	}
 
 	public void add(int id, int atime, Order order) {
-		diners[id] = new Diner(id, atime, order, tables, cooks, this);
+		diners[id] = new Diner(id, atime, order);
 	}
 
 	public void start() {
