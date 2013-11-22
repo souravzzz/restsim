@@ -28,6 +28,11 @@ public class Order {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return ("Burgers: " + items[0] + ", Fries: " + items[1] + ", Coke: " + items[2]);
+	}
+
 	private boolean isOrderValid(int burgers, int fries, int coke) {
 		if (burgers < 1)
 			return false;

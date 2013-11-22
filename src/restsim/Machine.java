@@ -1,7 +1,7 @@
 package restsim;
 
 public enum Machine {
-	BURGERMC(5 * 60), FRIESMC(3 * 60), COKEMC(1 * 60);
+	BURGERMC(5), FRIESMC(3), COKEMC(1);
 
 	private int cookTime;
 	private boolean busy;
@@ -25,11 +25,12 @@ public enum Machine {
 		}
 	}
 
-	public synchronized void cookFood() {
+	public synchronized void cookFood(int cookId) {
 		try {
 			while (busy) {
 				wait();
 			}
+			System.out.println("Cook " + cookId + " started " + this + " at ");
 			busy = true;
 			Thread.sleep(cookTime);
 			busy = false;
