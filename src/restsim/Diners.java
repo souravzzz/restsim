@@ -4,14 +4,18 @@ public class Diners {
 
 	private int finished;
 	private Diner[] diners;
+	private Tables tables;
+	private Cooks cooks;
 
 	public Diners(int num, Tables tables, Cooks cooks) {
 		finished = 0;
 		diners = new Diner[num];
-		for (int i = 0; i < num; i++) {
-			Order order = new Order((i % 2) + 1, i % 3, i % 2);
-			diners[i] = new Diner(i, order, tables, cooks, this);
-		}
+		this.tables = tables;
+		this.cooks = cooks;
+	}
+
+	public void add(int id, int atime, Order order) {
+		diners[id] = new Diner(id, atime, order, tables, cooks, this);
 	}
 
 	public void start() {
@@ -28,7 +32,7 @@ public class Diners {
 		finished++;
 		if (finished == diners.length) {
 			System.out.println("Last Diner " + diner.id
-					+ " left restaurant at ");
+					+ " left restaurant  at " + Clock.getTime());
 			System.exit(0);
 		}
 	}

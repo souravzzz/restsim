@@ -1,7 +1,7 @@
 package restsim;
 
 public enum Machine {
-	BURGERMC(5), FRIESMC(3), COKEMC(1);
+	BURGERMC(5 * 60), FRIESMC(3 * 60), COKEMC(1 * 60);
 
 	private int cookTime;
 	private boolean busy;
@@ -30,13 +30,29 @@ public enum Machine {
 			while (busy) {
 				wait();
 			}
-			System.out.println("Cook " + cookId + " started " + this + " at ");
+			System.out.println("Cook " + cookId + " started " + this + " at "
+					+ Clock.getTime());
 			busy = true;
 			Thread.sleep(cookTime);
 			busy = false;
 			notify();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public String toString() {
+		switch (this) {
+		case BURGERMC:
+			return "Burger machine";
+		case FRIESMC:
+			return "Fries machine ";
+		case COKEMC:
+			return "Cokes machine ";
+		default:
+			System.out.println("Invalid machine type");
+			return null;
 		}
 	}
 }
