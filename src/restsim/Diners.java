@@ -17,6 +17,7 @@ public class Diners {
 		diners[id] = new Diner(id, atime, order);
 	}
 
+	// CREATE AND START THE THREADS
 	public void start() {
 		for (int i = 0; i < diners.length; i++) {
 			new Thread(diners[i]).start();

@@ -16,6 +16,7 @@ public class Tables {
 		free = num;
 	}
 
+	// RETURNS A FREE TABLE, BLOCKS IF NO TABLE IS AVAILABLE
 	public synchronized Table getTable() {
 		try {
 			while (free == 0) {
@@ -34,6 +35,7 @@ public class Tables {
 		return null;
 	}
 
+	// RETURN A TABLE TO FREE POOL
 	public synchronized void freeTable(Table table) {
 		free++;
 		table.busy = false;

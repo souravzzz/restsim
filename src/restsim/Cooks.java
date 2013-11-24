@@ -14,6 +14,7 @@ public class Cooks {
 		}
 	}
 
+	// CREATE AND START THE THREADS
 	public void start() {
 		for (int i = 0; i < cooks.length; i++) {
 			new Thread(cooks[i]).start();

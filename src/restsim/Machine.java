@@ -11,6 +11,7 @@ public enum Machine {
 		busy = false;
 	}
 
+	// RETURN APPROPRIATE MACHINE
 	public static Machine get(Food type) {
 		switch (type) {
 		case BURGER:

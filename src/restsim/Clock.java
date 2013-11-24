@@ -4,10 +4,12 @@ public class Clock {
 
 	private static long time = 0;
 
+	// RETURN CURRENT TIME
 	public static long getTime() {
 		return time;
 	}
 
+	// USED INSTEAD OF Thread.sleep()
 	public static void sleep(int minutes) {
 		long end = time + minutes;
 		while (getTime() < end) {
@@ -22,7 +24,7 @@ public class Clock {
 
 	public static void tick() {
 		try {
-			Thread.sleep(10); // 1 minute = 10 millisecond
+			Thread.sleep(20); // 1 minute = 20 millisecond
 		} catch (InterruptedException e) {
 		}
 		time++;
