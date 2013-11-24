@@ -22,7 +22,7 @@ public class Diner implements Runnable {
 	@Override
 	public void run() {
 		try {
-			Thread.sleep(atime * Clock.factor);
+			Clock.sleep(atime);
 
 			// FIND TABLE
 			Table table = restaurant.tables.getTable();
@@ -39,7 +39,7 @@ public class Diner implements Runnable {
 			// GOT FOOD
 
 			// START EATING
-			Thread.sleep(30 * Clock.factor);
+			Clock.sleep(30);
 
 			// LEAVE TABLE
 			System.out.format("Diner %2d finished left Table %2d at %d%n", id,

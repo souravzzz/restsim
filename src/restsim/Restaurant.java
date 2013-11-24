@@ -34,8 +34,10 @@ public class Restaurant {
 		sc.close();
 
 		cooks.start();
-		Clock.init();
 		diners.start();
+		while (diners.hasMore()) {
+			Clock.tick();
+		}
 	}
 
 }
