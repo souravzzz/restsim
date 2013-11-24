@@ -27,8 +27,8 @@ public class Diner implements Runnable {
 			// FIND TABLE
 			Table table = restaurant.tables.getTable();
 			restaurant.diners.sitdown(this);
-			System.out.format("Diner %2d was seated at Table %2d at %d%n", id,
-					table.id, Clock.getTime());
+			System.out.format("Diner %-2d was seated at Table %-2d at %d%n",
+					id, table.id, Clock.getTime());
 
 			// WAIT FOR FOOD
 			synchronized (order) {
@@ -42,8 +42,8 @@ public class Diner implements Runnable {
 			Clock.sleep(30);
 
 			// LEAVE TABLE
-			System.out.format("Diner %2d finished left Table %2d at %d%n", id,
-					table.id, Clock.getTime());
+			System.out.format("Diner %-2d finished left Table %-2d at %d%n",
+					id, table.id, Clock.getTime());
 			restaurant.tables.freeTable(table);
 
 			// LEAVE RESTAURANT

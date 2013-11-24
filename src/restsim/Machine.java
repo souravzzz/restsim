@@ -31,7 +31,7 @@ public enum Machine {
 			while (busy) {
 				wait();
 			}
-			System.out.format("Cook %2d started  %s at %d%n", cookId, this,
+			System.out.format("Cook %-2d started  %s at %d%n", cookId, this,
 					Clock.getTime());
 			busy = true;
 			Clock.sleep(cookTime);

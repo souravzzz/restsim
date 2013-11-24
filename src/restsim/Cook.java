@@ -23,7 +23,7 @@ public class Cook implements Runnable {
 
 	// SERVE FOOD TO DINER
 	private void serve(Diner diner) {
-		System.out.format("Cook %2d served food to Diner %2d at %d%n", id,
+		System.out.format("Cook %-2d served food to Diner %-2d at %d%n", id,
 				diner.id, Clock.getTime());
 		restaurant.diners.serveDiner(diner);
 	}
@@ -34,8 +34,9 @@ public class Cook implements Runnable {
 			// WAIT FOR NEW DINER
 			Diner diner = restaurant.diners.getDiner();
 			if (diner != null) {
-				System.out.format("Cook %2d got order from Diner %2d at %d%n",
-						id, diner.id, Clock.getTime());
+				System.out.format(
+						"Cook %-2d got order from Diner %-2d at %d%n", id,
+						diner.id, Clock.getTime());
 				prepare(diner.order);
 				serve(diner);
 			}

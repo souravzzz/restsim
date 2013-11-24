@@ -67,7 +67,7 @@ public class Diners {
 	public synchronized void leave(Diner diner) {
 		finished++;
 		if (finished == diners.length) {
-			System.out.format("Last Diner %2d leaves restaurant at %d%n",
+			System.out.format("Last Diner %-2d leaves restaurant at %d%n",
 					diner.id, Clock.getTime());
 			System.exit(0);
 		}
